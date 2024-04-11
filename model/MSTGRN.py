@@ -4,9 +4,9 @@ import torch.nn as nn
 import math
 import numpy as np
 # from model.SelfAttention import ScaledDotProductAttention
-from Memory import MemoryAugmented
-from former import SelfAttentionLayer
-from Decoder import AGCRNN_Decoder
+from memory import MemoryAugmented
+from stformer import SelfAttentionLayer
+from decoder import AGCRNN_Decoder
 
 
 
@@ -31,10 +31,10 @@ class PositionalEncoding(nn.Module):
         # return self.pe[:, :x.size(1)].unsqueeze(2).expand_as(x).detach()
 
 
-class MTGRN(nn.Module):
+class MSTGRN(nn.Module):
     def __init__(self, num_nodes, input_dim, output_dim, horizon, rnn_units, num_layers=1, cheb_k=3,
                  ycov_dim=2, mem_num=20, mem_dim=72, cl_decay_steps=2000, use_curriculum_learning=True):
-        super(MTGRN, self).__init__()
+        super(MSTGRN, self).__init__()
         self.num_nodes = num_nodes
         self.input_dim = input_dim
         self.rnn_units = rnn_units
